@@ -1,7 +1,9 @@
-{
+require("dotenv").config();
+
+module.exports = {
   "development": {
     "username": "root",
-    "password": "sunflow3r",
+    "password": process.env.PASSWORD,
     "database": "calendar",
     "host": "127.0.0.1",
     "dialect": "mysql"
