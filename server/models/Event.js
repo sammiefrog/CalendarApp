@@ -7,16 +7,19 @@ module.exports = (sequelize, DataTypes) => {
         len: [1],
       },
     },
-    description: {
+    start: {
       allowNull: false,
-      type: DataTypes.TEXT,
-      validate: {
-        len: [1],
-      },
+      type: DataTypes.DATE,
     },
-    date: {
+    end: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+    },
+    allDay: {
+      type: DataTypes.BOOLEAN,
+    },
+    resource: {
+      type: DataTypes.STRING,
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
