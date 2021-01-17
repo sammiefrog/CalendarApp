@@ -1,8 +1,7 @@
-// adding, viewing, and deleting events on calendar page
-// similar to pop up
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import TextField from '../TextField'
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -47,7 +46,7 @@ export default function SimpleModal() {
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Event</h2>
       <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+      <TextField />
       </p>
       <SimpleModal />
     </div>
@@ -76,4 +75,3 @@ export default function SimpleModal() {
   );
 }
 
-// figure out if text field and/or date/time is best for input
