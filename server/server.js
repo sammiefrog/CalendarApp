@@ -2,6 +2,7 @@
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
+const passport = require("passport");
 const app = express();
 const db = require("./models");
 
@@ -17,10 +18,11 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // using passport for authentication
-
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 // requiring routes
-
+require("./routes/user-routes")(app);
 
 // Send every other request to the React app
 // Define any API routes before this runs
@@ -30,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
 // });
 
 // add sequelize
-db.sequelize.sync({}).then(() => {
+db.sequelize.sync({force:true}).then(() => {
   app.listen(PORT, () => {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });

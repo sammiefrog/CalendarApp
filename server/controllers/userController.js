@@ -8,17 +8,18 @@ const { secret } = require("../config/keys");
 module.exports = {
   RegistrationController: async (req, res) => {
     const { username, password } = req.body;
+    console.log(req.body)
 
     const { err } = await canRegister(req.body);
     if (err) return res.status(400).send(error.details[0].message);
 
-    const usernameIsRegistered = await User.findOne({ username });
-    if (usernameIsRegistered)
-      return res.status(400).send("This username is already in use");
+    // const usernameIsRegistered = await User.findOne({ where: username });
+    // if (usernameIsRegistered)
+    //   return res.status(400).send("This username is already in use");
 
     const salt = await bcrypt.genSalt();
     const hash = await bcrypt.hash(password, salt);
-    const newUser = new User({ username, password: hash });
+    const newUser = User.create({ username, password });
 
     try {
       const savedUser = await newUser.save();
@@ -41,7 +42,7 @@ module.exports = {
     const { err } = await canLogin(req.body);
     if (err) return res.status(400).send(error.details[0].message);
 
-    const existingUser = await User.findOne({ username });
+    const existingUser = await User.findOne({ where: { username: username } });
     if (!existingUser)
       return res.status(400).send("Username or password is incorrect!");
 
