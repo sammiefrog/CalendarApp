@@ -1,5 +1,6 @@
 // importing required dependency and file for user
 const passport = require("passport");
+const User = require('../models').User;
 const {
   RegistrationController,
   LoginController,
@@ -18,5 +19,11 @@ module.exports = (app) => {
       console.log(req.user);
       res.status(200).send("Authorized.");
     }
-  );
+    );
+    
+app.get("/api/getallusers", (req, res) => {
+    User.findAll({}).then(response => {
+        res.json(response)
+    }).catch(err => console.log(error))
+})
 };
