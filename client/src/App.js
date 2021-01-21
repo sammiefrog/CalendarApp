@@ -14,7 +14,7 @@ function App() {
         <Route exact path="/calendar" component={CalendarPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/about" component={About} />
+        <Route exact path={["/", "/about"]} component={About} />
       </Switch>
     </Router>
   );
