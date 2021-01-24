@@ -7,3 +7,5 @@ module.exports = (app) => {
         }).catch(err => console.log(error))
     })
 }
+
+// do routes here and queries on databases in the controller (i.e userController.js - findOne, findAll, etc.)

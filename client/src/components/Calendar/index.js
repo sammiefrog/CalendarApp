@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import format from 'date-fns/format'
@@ -6,6 +6,7 @@ import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import Axios from 'axios';
+// probably should import event modal here to open up onClick when CRUDding event
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -18,19 +19,10 @@ const localizer = dateFnsLocalizer({
   locales,
 })
 
-const myEventsList = []
-
 const MyCalendar = () => {
-  constructor (props) {
-    super(props)
+  const [events, setEvents] = useState([])
 
-    this.state = {
-      cal_events: [],
-    }
-  }
-
-  componentDidMount () {
-    // let self = this
+  useEffect(() => {
     Axios.get('api/events')
       .then((res) => {
         console.log(res.data);
@@ -44,21 +36,19 @@ const MyCalendar = () => {
           dateFnsLocalizer.utc(appointments[i].end).toDate();
         }
 
-        self.setState({
-          cal_events:appointments
-        })
+          setEvents(appointments)
+          console.log(events) 
       })
       .catch((err) => {
         console.log(err)
       });
-  }
-
-  const { cal_events } = this.state
+  });
+  // full CRUD with events - GET when calendar opens, POST to add events, UPDATE to edit events, and DELETE to delete events
 
     return (
       <Calendar
       localizer={localizer}
-      events={myEventsList}
+      events={events}
       startAccessor="start"
       endAccessor="end"
       style={{ height: 500 }}
