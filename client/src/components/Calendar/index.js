@@ -7,6 +7,7 @@ import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import Axios from 'axios';
 // probably should import event modal here to open up onClick when CRUDding event
+import EventModal from '../EventModal';
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
