@@ -62,7 +62,7 @@ const LoginForm = () => {
     };
 
     auth
-        ? (content = <Redirect to="/ballot" />)
+        ? (content = <Redirect to="/calendar" />)
         : (content = (
               <Container className={classes.container}>
                   <form onSubmit={handleFormSubmit} noValidate autoComplete="off">

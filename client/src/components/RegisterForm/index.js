@@ -76,7 +76,7 @@ const RegistrationForm = () => {
     };
 
     if (authorized) {
-        content = <Redirect to="/ballot" />;
+        content = <Redirect to="/calendar" />;
     } else if (registered) {
         content = <Redirect to="/login" />;
     } else {
