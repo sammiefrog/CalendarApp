@@ -4,6 +4,10 @@ import CalendarPage from "./pages/Calendar";
 import About from "./pages/About"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
+// import {
+//   UserContext,
+//   UserContextProvider,
+// } from "./context/UserContext";
 
 
 

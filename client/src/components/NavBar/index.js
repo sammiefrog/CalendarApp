@@ -11,7 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import PropTypes from "prop-types";
-import { UserContext } from "../../context/contexts/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { Menu } from "@material-ui/core";
 import Hidden from "@material-ui/core/Hidden";
 
