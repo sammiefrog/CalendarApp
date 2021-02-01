@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
-import { UserContext } from "../../context/contexts/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { SendRegistration } from "../../actions/Register";
 import { Typography } from "@material-ui/core";
 
@@ -76,7 +76,7 @@ const RegistrationForm = () => {
     };
 
     if (authorized) {
-        content = <Redirect to="/ballot" />;
+        content = <Redirect to="/calendar" />;
     } else if (registered) {
         content = <Redirect to="/login" />;
     } else {

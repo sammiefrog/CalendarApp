@@ -9,9 +9,9 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+// import MenuItem from "@material-ui/core/MenuItem";
 import PropTypes from "prop-types";
-import { UserContext } from "../../context/contexts/UserContext";
+// import { UserContext } from "../../context/UserContext";
 import { Menu } from "@material-ui/core";
 import Hidden from "@material-ui/core/Hidden";
 
@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = props => {
     const classes = useStyles();
-    const { user, dispatch } = useContext(UserContext);
+    // const { user, dispatch } = useContext(UserContext);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = event => {
@@ -49,12 +49,12 @@ const NavBar = props => {
         setAnchorEl(null);
     };
 
-    const handleLogout = () => {
-        dispatch({
-            type: "LOGOUT",
-            payload: { message: "Successfully Logged out!" }
-        });
-    };
+    // const handleLogout = () => {
+    //     dispatch({
+    //         type: "LOGOUT",
+    //         payload: { message: "Successfully Logged out!" }
+    //     });
+    // };
 
     return (
         <div className={classes.root}>
@@ -86,11 +86,11 @@ const NavBar = props => {
                                 Login
                             </MenuItem>
                         )} */}
-                        {user.loggedIn && (
+                        {/* {user.loggedIn && (
                             <MenuItem component="button" onClick={handleLogout}>
                                 Logout
                             </MenuItem>
-                        )}
+                        )} */}
                     </Menu>
 
                     <Typography variant="h6" className={classes.spacing}>
@@ -120,13 +120,13 @@ const NavBar = props => {
                             </Button>
                         </Hidden>
                     )} */}
-                    {user.loggedIn && (
+                    {/* {user.loggedIn && (
                         <Hidden only="xs">
                             <Button color="inherit" onClick={handleLogout}>
                                 Logout
                             </Button>
                         </Hidden>
-                    )}
+                    )} */}
                 </Toolbar>
             </AppBar>
         </div>
