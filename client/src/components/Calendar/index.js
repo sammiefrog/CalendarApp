@@ -6,6 +6,7 @@ import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import Axios from 'axios';
+import API from "../../utils/API"
 // probably should import event modal here to open up onClick when CRUDding event
 import EventModal from '../EventModal';
 
@@ -45,9 +46,33 @@ const MyCalendar = () => {
       });
   });
   // full CRUD with events - GET when calendar opens, POST to add events, UPDATE to edit events, and DELETE to delete events
+  const addEvents = async () => {
+    try {
+      await API.addEvents()
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const editEvents = async eventId => {
+  try {
+    await API.editEvents(eventId)
+} catch (err) {
+  console.log(err);
+}
+}
+
+const deleteEvents = async eventId => {
+    try {
+      await API.deleteEvents(eventId)
+  } catch (err) {
+    console.log(err);
+  }
+}
 
     return (
       <Calendar
+      // open up modal on click and add CRUD actions to modal
       localizer={localizer}
       events={events}
       startAccessor="start"
