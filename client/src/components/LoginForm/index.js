@@ -1,5 +1,5 @@
 // importing necessary dependencies and styling
-import React from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -10,7 +10,6 @@ import { UserContext } from "../../context/UserContext";
 import SendLoginInfo from "../../actions/Login";
 import { Typography } from "@material-ui/core";
 import Link from "@material-ui/core/Link";
-// pushing again to merge again
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,45 +35,45 @@ const useStyles = makeStyles(theme => ({
 // login form
 const LoginForm = () => {
     const classes = useStyles();
-    // const { user, dispatch } = useContext(UserContext);
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
-    // const auth = user.loggedIn;
-    // const message = user.message;
-    // let content;
-    // console.log(message);
+    const { user, dispatch } = useContext(UserContext);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const auth = user.loggedIn;
+    const message = user.message;
+    let content;
+    console.log(message);
 
-    // const handleFormSubmit = async event => {
-    //     event.preventDefault();
+    const handleFormSubmit = async event => {
+        event.preventDefault();
 
-    //     try {
-    //         const response = await SendLoginInfo(username, password);
-    //         dispatch({
-    //             type: "LOGIN_SUCCEEDED",
-    //             payload: { token: response.data.token }
-    //         });
-    //     } catch (error) {
-    //         dispatch({
-    //             type: "LOGIN_FAILED",
-    //             payload: { error: error.response.data, message: "Login Failed! Please Try Again." }
-    //         });
-    //         setPassword("");
-    //     }
-    // };
+        try {
+            const response = await SendLoginInfo(username, password);
+            dispatch({
+                type: "LOGIN_SUCCEEDED",
+                payload: { token: response.data.token }
+            });
+        } catch (error) {
+            dispatch({
+                type: "LOGIN_FAILED",
+                payload: { error: error.response.data, message: "Login Failed! Please Try Again." }
+            });
+            setPassword("");
+        }
+    };
 
     auth
         ? (content = <Redirect to="/calendar" />)
         : (content = (
               <Container className={classes.container}>
-                  <form noValidate autoComplete="off">
+                  <form onSubmit={handleFormSubmit} noValidate autoComplete="off">
                       <Box>
                           <TextField
                               className={classes.root}
                               id="outlined-basic username"
                               label="Username"
-                            //   value={username}
+                              value={username}
                               variant="outlined"
-                            //   onChange={event => setUsername(event.target.value)}
+                              onChange={event => setUsername(event.target.value)}
                           />
                       </Box>
                       <Box>
@@ -83,9 +82,9 @@ const LoginForm = () => {
                               id="outlined-basic password"
                               label="Password"
                               type="password"
-                            //   value={password}
+                              value={password}
                               variant="outlined"
-                            //   onChange={event => setPassword(event.target.value)}
+                              onChange={event => setPassword(event.target.value)}
                           />
                       </Box>
                       <Box>
@@ -99,14 +98,15 @@ const LoginForm = () => {
                           <Link href="/register" color="primary" variant="body2">
                               {"Don't have an account? Register Now!"}
                           </Link>
-                          {/* <Typography variant="subtitle2">{message}</Typography> */}
+                          <Typography variant="subtitle2">{message}</Typography>
                       </Box>
                   </form>
               </Container>
-          );
+          ));
 
     return <div>{content}</div>;
 };
 
 // exporting component to be used in other parts of the application
 export default LoginForm;
+
