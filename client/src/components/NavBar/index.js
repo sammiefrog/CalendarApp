@@ -1,13 +1,14 @@
 // for calendar page
 // will have logout and other functionality 
 // importing necessary dependencies and styling
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
+
 import MenuIcon from "@material-ui/icons/Menu";
 // import MenuItem from "@material-ui/core/MenuItem";
 import PropTypes from "prop-types";
@@ -66,7 +67,7 @@ const NavBar = props => {
                         color="inherit"
                         aria-label="menu"
                         onClick={handleClick}>
-                        <MenuIcon />
+                        {/* <MenuIcon /> */}
                     </IconButton>
                     {/* menu for when on a small screen */}
                     <Menu
@@ -86,6 +87,7 @@ const NavBar = props => {
                                 Login
                             </MenuItem>
                         )} */}
+
                         {/* {user.loggedIn && (
                             <MenuItem component="button" onClick={handleLogout}>
                                 Logout
@@ -120,12 +122,15 @@ const NavBar = props => {
                             </Button>
                         </Hidden>
                     )} */}
+
                     {/* {user.loggedIn && (
+
                         <Hidden only="xs">
-                            <Button color="inherit" onClick={handleLogout}>
+                            <Button color="inherit" >
                                 Logout
                             </Button>
                         </Hidden>
+
                     )} */}
                 </Toolbar>
             </AppBar>

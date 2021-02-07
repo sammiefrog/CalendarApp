@@ -12,7 +12,7 @@ const CalendarPage = () => {
     <Container>
       <NavBar />
       <Calendar>
-        <EventModal />
+      <EventModal />
       </Calendar>
     </Container>
   );
