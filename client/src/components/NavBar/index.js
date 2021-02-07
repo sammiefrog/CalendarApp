@@ -8,10 +8,11 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+
+import MenuIcon from "@material-ui/icons/Menu";
+// import MenuItem from "@material-ui/core/MenuItem";
 import PropTypes from "prop-types";
-// import { UserContext } from "../../context/contexts/UserContext";
+// import { UserContext } from "../../context/UserContext";
 import { Menu } from "@material-ui/core";
 import Hidden from "@material-ui/core/Hidden";
 
@@ -86,11 +87,12 @@ const NavBar = props => {
                                 Login
                             </MenuItem>
                         )} */}
-                        {/* {user.loggedIn && ( */}
-                            <MenuItem component="button" >
+
+                        {/* {user.loggedIn && (
+                            <MenuItem component="button" onClick={handleLogout}>
                                 Logout
                             </MenuItem>
-                        {/* )} */}
+                        )} */}
                     </Menu>
 
                     <Typography variant="h6" className={classes.spacing}>
@@ -120,13 +122,16 @@ const NavBar = props => {
                             </Button>
                         </Hidden>
                     )} */}
-                    {/* {user.loggedIn && ( */}
+
+                    {/* {user.loggedIn && (
+
                         <Hidden only="xs">
                             <Button color="inherit" >
                                 Logout
                             </Button>
                         </Hidden>
-                    {/* )} */}
+
+                    )} */}
                 </Toolbar>
             </AppBar>
         </div>

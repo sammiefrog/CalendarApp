@@ -5,10 +5,11 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-// import { Redirect } from "react-router-dom";
-// import { UserContext } from "../../context/contexts/UserContext";
-// import { SendRegistration } from "../../actions/Register";
-// import { Typography } from "@material-ui/core";
+
+import { Redirect } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
+import { SendRegistration } from "../../actions/Register";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -75,12 +76,13 @@ const RegistrationForm = () => {
     //     }
     // };
 
-    // if (authorized) {
-    //     content = <Redirect to="/ballot" />;
-    // } else if (registered) {
-    //     content = <Redirect to="/login" />;
-    // } else {
-        let content = (
+
+    if (authorized) {
+        content = <Redirect to="/calendar" />;
+    } else if (registered) {
+        content = <Redirect to="/login" />;
+    } else {
+        content = (
             <Container className={classes.container}>
                 <form noValidate autoComplete="off">
                     <Box>
