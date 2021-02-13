@@ -1,2 +1,3 @@
-DROP DATABASE IF EXISTS calendarapp_db;
-CREATE DATABASE calendarapp_db;
+DROP DATABASE IF EXISTS calendar;
+
+CREATE DATABASE calendar;
