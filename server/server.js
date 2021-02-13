@@ -23,13 +23,14 @@ require("./config/passport")(passport);
 
 // requiring routes
 require("./routes/user-routes")(app);
+require("./routes/api-routes")(app);
 
 // Send every other request to the React app
 // Define any API routes before this runs
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   // res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// });
 
 // add sequelize
 db.sequelize.sync({force:false}).then(() => {

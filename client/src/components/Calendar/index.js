@@ -13,8 +13,10 @@ import EventModal from '../EventModal';
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
 }
+const formattedDate = format('MM/DD/YYYY')
+
 const localizer = dateFnsLocalizer({
-  format,
+  formattedDate,
   parse,
   startOfWeek,
   getDay,
