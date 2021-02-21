@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import TextField from '../TextField'
+import TextField from '@material-ui/core/TextField'
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -29,43 +29,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal() {
+export default function SimpleModal(props) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+ 
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Event</h2>
       <p id="simple-modal-description">
-      <TextField />
+      <TextField id="standard-basic" label="Event Title" />
+      <TextField id="standard-basic" label="Event Description" />
+      <TextField id="standard-basic" label="Start Date:" />
+      <TextField id="standard-basic" label="End Date:" />
       </p>
+      <button type="button" onClick={props.handleClose}>
+        Add Event
+      </button>
       <SimpleModal />
     </div>
   );
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Add Event
-      </button>
-      <button type="button" onClick={handleOpen}>
-        Edit Event
-      </button>
-      <button type="button" onClick={handleOpen}>
-        Delete Event
-      </button>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={props.handleOpen}
+        onClose={props.handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

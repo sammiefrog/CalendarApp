@@ -5,7 +5,8 @@ import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
-import API from '../../utils/API'
+import API from '../../utils/API';
+import EventModal from '../EventModal';
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -26,9 +27,17 @@ const myEventsList = [
 
 const MyCalendar = () => {
   const [events, setEvents] = useState([]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [range, setRange] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [modalInfo, setModalInfo] = useState({
+    title: "",
+    resource: "",
+    allDay: true,
+    start: "",
+    end: ""
+  })
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [range, setRange] = useState(true);
 
   useEffect(() => {
     getEvents();
@@ -63,24 +72,33 @@ const MyCalendar = () => {
     }
   };
 
-  const addEvents = async () => {
-    try {
-      const event  = await API.addEvents({
-        title: title,
-        allDay: range,
-        resource: description,
-      });
-      setRange(true);
-      setTitle("");
-      setDescription("");
-      setEvents(event)
-      getEvents();
-    } catch (err) {
-      console.log(err);
-    }
+  // const addEvents = async () => {
+  //   try {
+  //     const event  = await API.addEvents({
+  //       title: title,
+  //       allDay: range,
+  //       resource: description,
+  //     });
+  //     setRange(true);
+  //     setTitle("");
+  //     setDescription("");
+  //     setEvents(event)
+  //     getEvents();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
     return (
+      <div>
       <Calendar
       localizer={localizer}
       events={myEventsList}
@@ -88,9 +106,14 @@ const MyCalendar = () => {
       endAccessor="end"
       style={{ height: 500 }}
       selectable={true}
-      onSelectSlot={addEvents}
+      onSelectSlot={handleOpen}
       tooltipAccessor="title"
     />
+    <EventModal 
+    handleOpen={open}
+    handleClose={handleClose}
+    />
+    </div>
     )
   }
 
