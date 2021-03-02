@@ -1,10 +1,17 @@
 const Event = require('../models').Event;
-// const jwt = require("jsonwebtoken");
+const User = require('../models').User;
+const jwt = require("jsonwebtoken");
 
 module.exports = {
     allEvents: async (req, res) => {
         try {
-            const results = await Event.findAll();
+            let decoded = await jwt.decode(req.params.token);
+
+            const results = await Event.findAll({
+                where: {
+                UserId: decoded.id
+            }});
+            
             console.log(results)
             res.status(200).send(results)
         } catch (error) {
@@ -14,7 +21,10 @@ module.exports = {
     },
     addEvents: async (req, res) => {
         try {
-            const event = await Event.create(req.body);
+            let decoded = await jwt.decode(req.params.token);
+
+            const event = await Event.create({...req.body, UserId: decoded.id});
+            console.log(event);
             res.status(200).send(event)
         } catch (error) {
             console.log(error)

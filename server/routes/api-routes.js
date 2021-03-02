@@ -7,8 +7,8 @@ const {
 } = require("../controllers/eventController");
 
 module.exports = app => {
-    app.get("/api/events", allEvents);
-    app.post("/api/addevent", addEvents);
+    app.get("/api/events/:token", allEvents);
+    app.post("/api/addevent/:token", addEvents);
     app.put("/api/events/:eventId", editEvents);
     app.delete("/api/events/:eventId", deleteEvents);
 }
