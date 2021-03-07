@@ -13,9 +13,9 @@ module.exports = {
     const { err } = await canRegister(req.body);
     if (err) return res.status(400).send(error.details[0].message);
 
-    // const usernameIsRegistered = await User.findOne({ where: username });
-    // if (usernameIsRegistered)
-    //   return res.status(400).send("This username is already in use");
+    const usernameIsRegistered = await User.findOne({ where: { username: req.body.username } });
+    if (usernameIsRegistered)
+      return res.status(400).send("This username is already in use");
 
     // const salt = await bcrypt.genSalt();
     // const hash = await bcrypt.hash(password, salt);
