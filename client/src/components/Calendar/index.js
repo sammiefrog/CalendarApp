@@ -28,16 +28,13 @@ const myEventsList = [
 const MyCalendar = () => {
   const [events, setEvents] = useState([]);
   const [open, setOpen] = useState(false);
-  const [modalInfo, setModalInfo] = useState({
-    title: "",
-    resource: "",
-    allDay: true,
-    start: "",
-    end: ""
-  })
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [range, setRange] = useState(true);
+  // const [modalInfo, setModalInfo] = useState({
+  //   title: "",
+  //   resource: "",
+  //   allDay: true,
+  //   start: "",
+  //   end: ""
+  // })
 
   useEffect(() => {
     getEvents();

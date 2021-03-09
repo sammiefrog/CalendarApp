@@ -1,7 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import TextField from '@material-ui/core/TextField'
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import TextField from "@material-ui/core/TextField";
+import API from "../../utils/API";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -20,10 +21,10 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
+    position: "absolute",
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -32,20 +33,64 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleModal(props) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-  // const [open, setOpen] = React.useState(false);
+  const [title, setTitle] = useState("")
+  const [resource, setResource] = useState("")
+  const [allDay, setAllDay] = useState(true)
+  const [start, setStart] = useState("")
+  const [end, setEnd] = useState("")
 
- 
+
+
+  const addEvents = async () => {
+    try {
+      await API.addEvents({
+        title: title,
+        allDay: allDay,
+        resource: resource,
+        start: start,
+        end: end,
+      }).then(() => {
+          setTitle ("")
+          setResource ("")
+          setAllDay (true)
+          setStart ("")
+          setEnd ("")
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Event</h2>
       <p id="simple-modal-description">
-      <TextField id="standard-basic" label="Event Title" />
-      <TextField id="standard-basic" label="Event Description" />
-      <TextField id="standard-basic" label="Start Date:" />
-      <TextField id="standard-basic" label="End Date:" />
+        <TextField 
+        id="standard-basic" 
+        label="Event Title"
+        onChange={e => setTitle(e.target.value)}
+        value={title}
+         />
+        <TextField 
+        id="standard-basic" 
+        label="Event Description"
+        onChange={e => setResource(e.target.value)}
+        value={resource} 
+        />
+        <TextField 
+        id="standard-basic" 
+        label="Start Date:"
+        onChange={e => setStart(e.target.value)}
+        value={start} 
+        />
+        <TextField 
+        id="standard-basic" 
+        label="End Date:"
+        onChange={e => setEnd(e.target.value)}
+        value={end} 
+        />
       </p>
-      <button type="button" onClick={props.handleClose}>
+      <button type="button" onClick={addEvents}>
         Add Event
       </button>
       <SimpleModal />
@@ -65,4 +110,3 @@ export default function SimpleModal(props) {
     </div>
   );
 }
-
