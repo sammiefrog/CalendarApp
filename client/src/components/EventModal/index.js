@@ -43,20 +43,23 @@ export default function SimpleModal(props) {
 
   const addEvents = async () => {
     try {
-      await API.addEvents({
+      let newEvent = await API.addEvents({
         title: title,
         allDay: allDay,
         resource: resource,
         start: start,
         end: end,
-      }).then(() => {
+        UserId: 1
+      });
+      console.log(newEvent)
           setTitle ("")
           setResource ("")
           setAllDay (true)
           setStart ("")
           setEnd ("")
-      });
-    } catch (err) {
+          props.handleClose()
+          // figure out how to re-render when modal closes
+      } catch (err) {
       console.log(err);
     }
   };
