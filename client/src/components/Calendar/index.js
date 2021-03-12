@@ -20,6 +20,7 @@ const localizer = dateFnsLocalizer({
   locales,
 })
 
+const reload=()=>window.location.reload();
 
 const MyCalendar = () => {
   const [events, setEvents] = useState([]);
@@ -50,6 +51,7 @@ const MyCalendar = () => {
 
   const handleClose = () => {
     setOpen(false);
+    reload()
   };
 
     return (
