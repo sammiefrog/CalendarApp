@@ -58,7 +58,6 @@ export default function SimpleModal(props) {
           setStart ("")
           setEnd ("")
           props.handleClose()
-          // figure out how to re-render when modal closes
       } catch (err) {
       console.log(err);
     }

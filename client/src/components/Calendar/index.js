@@ -64,6 +64,17 @@ const MyCalendar = () => {
       style={{ height: 500 }}
       selectable={true}
       onSelectSlot={handleOpen}
+      onSelectEvent={event => alert(`
+      Name: ${event.title} 
+      Description: ${event.resource} 
+      Start: ${event.start} 
+      End: ${event.end} 
+      All Day? ${event.allDay}`)}
+      // when an event is clicked
+      // modal should pop up showing event info - do this first
+      // then have option to edit or delete event on this modal pop up 
+      // different from modal that pops up to create an event
+      // so build modal that displays event info first, then add edit and delete functions to that
       tooltipAccessor="title"
     />
     <EventModal 
