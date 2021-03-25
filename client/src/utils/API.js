@@ -5,8 +5,8 @@ export default {
     getEvents: () => {
         return axios.get(`/api/events`);
     },
-    addEvents: () => {
-        return axios.post(`/api/addevent`);
+    addEvents: (data) => {
+        return axios.post(`/api/addevent`, data);
     },
     editEvents: eventId => {
         return axios.put(`/api/events/${eventId}`);

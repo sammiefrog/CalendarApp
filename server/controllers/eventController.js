@@ -5,13 +5,7 @@ const jwt = require("jsonwebtoken");
 module.exports = {
     allEvents: async (req, res) => {
         try {
-            let decoded = await jwt.decode(req.params.token);
-
-            const results = await Event.findAll({
-                where: {
-                UserId: decoded.id
-            }});
-            
+            const results = await Event.findAll();
             console.log(results)
             res.status(200).send(results)
         } catch (error) {
@@ -21,16 +15,41 @@ module.exports = {
     },
     addEvents: async (req, res) => {
         try {
-            let decoded = await jwt.decode(req.params.token);
-
-            const event = await Event.create({...req.body, UserId: decoded.id});
-            console.log(event);
+            const event = await Event.create(req.body);
             res.status(200).send(event)
         } catch (error) {
             console.log(error)
             res.status(400).send(error);
         }
     },
+    // allEvents: async (req, res) => {
+    //     try {
+    //         let decoded = await jwt.decode(req.params.token);
+
+    //         const results = await Event.findAll({
+    //             where: {
+    //             UserId: decoded.id
+    //         }});
+            
+    //         console.log(results)
+    //         res.status(200).send(results)
+    //     } catch (error) {
+    //         console.log(error);
+    //         res.status(400).send(error);
+    //     }
+    // },
+    // addEvents: async (req, res) => {
+    //     try {
+    //         let decoded = await jwt.decode(req.params.token);
+
+    //         const event = await Event.create({...req.body, UserId: decoded.id});
+    //         console.log(event);
+    //         res.status(200).send(event)
+    //     } catch (error) {
+    //         console.log(error)
+    //         res.status(400).send(error);
+    //     }
+    // },
     editEvents: async (req, res) => {
         try {
             const eventId = req.params.eventId;
